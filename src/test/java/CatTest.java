@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CatTest {
 
-    @Mock   // Мок для класса Feline
+    @Mock
     private Feline feline;
     private Cat cat;
 

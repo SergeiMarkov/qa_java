@@ -1,23 +1,21 @@
 import com.example.Feline;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
-
 public class FelineTest {
 
-    @Spy
     private Feline feline;
+
+    @Before
+    public void beforeAll() {
+        feline = new Feline();
+    }
 
     @Test
     public void eatMeatFelineTest() throws Exception {
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expectedFoodFeline = List.of("Животные", "Птицы", "Рыба");
         List<String> actualFoodFeline = feline.eatMeat();
         Assert.assertEquals("Некорректный результат, Кошачьи не Хищники?", expectedFoodFeline, actualFoodFeline);
@@ -25,7 +23,6 @@ public class FelineTest {
 
     @Test
     public void getKittensWithOutKittensCountFelineTest() {
-        Mockito.when(feline.getKittens(1)).thenReturn(1);
         int expectedKittensFeline = 1;
         int actualKittensFeline = feline.getKittens();
         Assert.assertEquals("Некорректный результат, без ввода количества котят, должен вернуть 1", expectedKittensFeline, actualKittensFeline);

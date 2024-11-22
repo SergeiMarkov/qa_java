@@ -16,6 +16,7 @@ public class LionTest {
 
     @Mock
     private Feline feline;
+
     private Lion lion;
 
     @Before

@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 
 @RunWith(Parameterized.class)
-public class ParametrizLionTest {
+public class ParametrizPozitiveMaleFemaleHasManeLionTest {
 
     private final boolean hasMane;
     private final String sex;
@@ -17,7 +17,7 @@ public class ParametrizLionTest {
 
     private Lion lion;
 
-    public ParametrizLionTest(String sex, boolean hasMane) {
+    public ParametrizPozitiveMaleFemaleHasManeLionTest(String sex, boolean hasMane) {
         this.sex = sex;
         this.hasMane = hasMane;
     }
@@ -27,22 +27,17 @@ public class ParametrizLionTest {
         return new Object[][]{
                 {"Самец", true},
                 {"Самка", false},
-                {"Лев", false},
-                {"Львица", false},
         };
     }
 
     @Test
-    public void doesHaveManeLionTest() {
-        try {
+    public void doesHaveManeLionTest() throws Exception {
             lion = new Lion(sex, feline);
             Boolean expectedHasMane = hasMane;
             Boolean actualHasMane = lion.doesHaveMane();
             Assert.assertEquals(expectedHasMane, actualHasMane);
-        } catch (Exception e) {
-            System.out.println("Неизвестный пол");
         }
     }
 
-}
+
 
