@@ -4,17 +4,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+
 @RunWith(Parameterized.class)
 public class ParametrizNegativeMaleFemaleLionTest {
 
-    Feline feline;
-
     private Lion lion;
+    private  Feline feline;
+    private final String Sex;
 
-    private final String SEX;
 
     public ParametrizNegativeMaleFemaleLionTest(String Sex) {
-        this.SEX = Sex;
+        this.Sex = Sex;
     }
 
     @Parameterized.Parameters(name = "ParametrizLionTest - {0}")
@@ -28,12 +30,12 @@ public class ParametrizNegativeMaleFemaleLionTest {
         };
     }
 
-    @Test(expected = java.lang.Exception.class)
-    public void negativeMaleFemaleLionTest() throws Exception {
-        try {
-            lion = new Lion(SEX, feline);
-        } catch (Exception e) {
-            throw new Exception("Некорректный пол, только самец или самка!");
-        }
+    @Test
+    public void negativeMaleFemaleLionTest() {
+        Throwable exception = assertThrows(Exception.class, () -> {
+            new Lion(this.Sex, feline);
+        });
+        assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
+
 }
